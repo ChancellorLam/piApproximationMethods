@@ -29,7 +29,7 @@ public class monteCarloPiApproximation {
 		System.out.println("After plotting " + numOfPoints + " points in a square of side length 0.5, " + pointsInsideCircle
 				+ " points were inside of a quarter circle with a radius of 1.");
 		System.out.println("By dividing the ratio of points inside the circle by the total amount of points in the square"
-				+ " we can approximate pi/4, which we can then use to find pi"); 
+				+ " we can approximate pi/4, which we can then use to find pi:"); 
 		System.out.println(pointsInsideCircle + "/" + numOfPoints + " * 4 = " + pointsInsideCircle/(double)numOfPoints * 4);
 	}
 }
