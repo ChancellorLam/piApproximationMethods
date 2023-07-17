@@ -26,7 +26,8 @@ public class InterfaceLogic {
 				startApproximating = true;
 			}
 			else if (chosenMethod.equals("2")) {
-				System.out.println("Not implemented yet, sorry!");
+				piApproximationMethods.newtonsMethod();
+				startApproximating = true;
 			}
 			else if (chosenMethod.equals("3")) {
 				piApproximationMethods.monteCarlo();
