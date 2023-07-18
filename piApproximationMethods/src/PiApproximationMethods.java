@@ -18,14 +18,16 @@ public class piApproximationMethods {
 		for (long i = 0; i < numOfIterations; i++) { // 4/1 - 4/3 + 4/5 - 4/7 + 4/9...± 4/n
 			if (counter % 2 == 0) {	// + terms
 				newValue = currentValue + 4.0/denominator;
-				System.out.println("Iteration " + (counter + 1) + ": " + currentValue + " + " + "4/" + denominator + " = " + newValue);
+				System.out.print("Iteration " + (counter + 1) + ": " + currentValue + " + " + "4/" + denominator + " = ");
+				System.out.println(newValue);
 				currentValue = newValue;
 				counter++;
 				denominator = denominator + 2;
 			} 
 			else if (counter % 2 == 1) { // - terms
 				newValue = currentValue - 4.0/denominator;
-				System.out.println("Iteration " + (counter + 1)  + ": " + currentValue + " - " + "4/" + denominator + " = " + newValue);
+				System.out.print("Iteration " + (counter + 1)  + ": " + currentValue + " - " + "4/" + denominator + " = ");
+				System.out.println(newValue);
 				currentValue = newValue;
 				counter++;
 				denominator = denominator + 2;
@@ -72,14 +74,20 @@ public class piApproximationMethods {
 		
 		while(startIntegrating == false) { // determine how user wants to find area under curve to use Newton's method to find pi
 			System.out.print("How would you like to numerically calculate the area under the curve? ");
-			System.out.println("The default is [0] Simpson's rule:");
-			System.out.println("Choose by inputting a number from 0-4:");
-			System.out.println("[0] Simpson's Rule:");
-			System.out.println("[1] Midpoint Rule:");
-			System.out.println("[2] Trapezoidal Rule:");
-			String chosenMethod = input.nextLine();
+			System.out.println("The most accurate for this scenario is [0] Simpson's rule:");
+			System.out.println("Choose by inputting a number from 0-2:");
 			
-			if (chosenMethod.equals("0")) { // if user decides to use Simpson's rule
+			// calculates area under a curve using parabolas
+			System.out.println("[0] Simpson's Rule (Most Accurate for Curves):");
+			
+			// calculates area under a curve using rectangles
+			System.out.println("[1] Midpoint Rule (Most Accurate for Step functions):");
+			
+			//calculates area under a curve using trapezoids
+			System.out.println("[2] Trapezoidal Rule (Most Accurate for Linear functions):");
+			
+			String chosenMethod = input.nextLine();
+			if (chosenMethod.equals("0") || chosenMethod.isEmpty()) { // if user decides to use Simpson's rule
 				
 				int numSubintervals = 0;
 				double subintervalWidth;
@@ -106,44 +114,57 @@ public class piApproximationMethods {
 						}
 					}
 				}
-				else { // default scenario
-					numSubintervals = 200;
+				else { // default scenario; if user doesn't choose how many subintervals
+					numSubintervals = 6000;
 					startIntegrating = true;
 				}
 				
 				// numerically integrate using Simpson's Rule
-				double areaUnderCurve = 0;
+				int numEndpoints = numSubintervals + 1;
+				double sumOfTerms = 0;
 				subintervalWidth = 0.25 / (double) numSubintervals;
 				
 				 // the 0th and last terms in the calculation of the integral using Simpson's rule are not modified
-				 // but for all other terms, odd terms are multiplied by 4 and even terms are multiplied by 2 so an example
-				 // calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
+				 // but for all other terms, odd terms are multiplied by 4 and even terms are multiplied by 2
+				 // so an example calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
 				 // and then all of this would be multiplied by width of the subintervals / 3
 				
-				for (int i = 1; i < numSubintervals - 1; i++) { // modify every term except for 0th and last
+				sumOfTerms = sumOfTerms + Math.sqrt(0) * Math.sqrt(1 - 0); // this is the 0th term
+				System.out.println("f(0): 0");
+				
+				for (int i = 1; i < numEndpoints - 1; i++) { // modify every term except for 0th and last
 					double x = subintervalWidth * i;
 					if (i % 2 == 1) { // odd terms
-						areaUnderCurve = areaUnderCurve + 4 * Math.sqrt(x) * Math.sqrt(1 - x);
+						sumOfTerms = sumOfTerms + 4 * Math.sqrt(x) * Math.sqrt(1 - x);
+						System.out.println("+ 4f(" + x + "): " + 4 * Math.sqrt(x) * Math.sqrt(1 - x));
 					}
 					else if (i % 2 == 0) { // even terms
-						areaUnderCurve = areaUnderCurve + 2 * Math.sqrt(x) * Math.sqrt(1 - x);
+						sumOfTerms = sumOfTerms + 2 * Math.sqrt(x) * Math.sqrt(1 - x);
+						System.out.println("+ 2f(" + x + "): " + 2 * Math.sqrt(x) * Math.sqrt(1 - x));
 					}
 				}
-				areaUnderCurve = areaUnderCurve + 1 + Math.sqrt(0.25) * Math.sqrt(1 - 0.25); // add the 0th and last terms
-				areaUnderCurve = areaUnderCurve * subintervalWidth / 3; // multiply all terms by width of subintervals / 3
-				double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve; // use area under curve in Newton's method
+				
+				sumOfTerms = sumOfTerms + Math.sqrt(0.25) * Math.sqrt(1 - 0.25); // add the last term
+				System.out.println("+ f(0.25): " + Math.sqrt(0.25) * Math.sqrt(1 - 0.25));
+				
+				System.out.println();
+				System.out.println("Sum of terms: " + sumOfTerms);
+				System.out.println("Number of subintervals: " + numSubintervals);
 				System.out.println("Width of subintervals: " + subintervalWidth);
+				
+				//calculate integral (area under curve)
+				double areaUnderCurve = sumOfTerms * subintervalWidth / 3; // multiply sum of terms by width of subintervals / 3
+				System.out.println("Area under curve: " + sumOfTerms + " * (" + subintervalWidth + "/3)");
+				double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve; // use area under curve in Newton's method
 				System.out.println("Area under curve: " + areaUnderCurve);
-				System.out.println("Using Simpson's Rule, we estimate pi to be approximately: " + piApproximation);
+				System.out.print("The area under the curve found through Simpson's rule can be used in Newton's Method to ");
+				System.out.println("approximate pi to the value of: " + piApproximation);
 			}
 			else if (chosenMethod.equals("1")) {
 				System.out.println("Not implemented yet, sorry!");
 			}
 			else if (chosenMethod.equals("2")) {
 				System.out.println("Not implemented yet, sorry!");
-			}
-			else if (chosenMethod.isEmpty()) {
-				System.out.println("Invalid input. Please input a number from 0-2.");
 			}
 			else {
 				System.out.println("Invalid input. Please input a number from 0-2.");
