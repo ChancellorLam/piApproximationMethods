@@ -105,7 +105,7 @@ public class PiApproximationMethods {
 							System.out.println("Invalid amount. You need to input an even number that is greater than zero.");
 						}
 						
-						else if (numSubintervals == 0) { // 0 subintervals is invalid, ask again for a valid number
+						else if (numSubintervals <= 0) { // 0 subintervals is invalid, ask again for a valid number
 							System.out.println("Invalid amount. You need to input an even number that is greater than zero.");
 						}
 						
@@ -152,7 +152,7 @@ public class PiApproximationMethods {
 				System.out.println("Number of subintervals: " + numSubintervals);
 				System.out.println("Width of subintervals: " + subintervalWidth);
 				
-				//calculate integral (area under curve)
+				//finish calculating integral (area under curve)
 				double areaUnderCurve = sumOfTerms * subintervalWidth / 3; // multiply sum of terms by width of subintervals / 3
 				System.out.println("Area under curve: " + sumOfTerms + " * (" + subintervalWidth + "/3)");
 				double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve; // use area under curve in Newton's method
