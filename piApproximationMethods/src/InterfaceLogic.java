@@ -22,15 +22,15 @@ public class InterfaceLogic {
 				System.out.println("Not implemented yet, sorry!");
 			}
 			else if (chosenMethod.equals("1")) {
-				piApproximationMethods.madhavaLeibniz();
+				PiApproximationMethods.madhavaLeibniz();
 				startApproximating = true;
 			}
 			else if (chosenMethod.equals("2")) {
-				piApproximationMethods.newtonsMethod();
+				PiApproximationMethods.newtonsMethod();
 				startApproximating = true;
 			}
 			else if (chosenMethod.equals("3")) {
-				piApproximationMethods.monteCarlo();
+				PiApproximationMethods.monteCarlo();
 				startApproximating = true;
 			}
 			else if (chosenMethod.equals("4")) {

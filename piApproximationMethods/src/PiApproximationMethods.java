@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.lang.Math;
 
-public class piApproximationMethods {
+public class PiApproximationMethods {
 	
 	static void madhavaLeibniz() {
 		
@@ -129,23 +129,23 @@ public class piApproximationMethods {
 				 // so an example calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
 				 // and then all of this would be multiplied by width of the subintervals / 3
 				
-				sumOfTerms = sumOfTerms + Math.sqrt(0) * Math.sqrt(1 - 0); // this is the 0th term
+				sumOfTerms = sumOfTerms + Math.sqrt(0 - 0 * 0); // this is the 0th term
 				System.out.println("f(0): 0");
 				
 				for (int i = 1; i < numEndpoints - 1; i++) { // modify every term except for 0th and last
 					double x = subintervalWidth * i;
 					if (i % 2 == 1) { // odd terms
-						sumOfTerms = sumOfTerms + 4 * Math.sqrt(x) * Math.sqrt(1 - x);
-						System.out.println("+ 4f(" + x + "): " + 4 * Math.sqrt(x) * Math.sqrt(1 - x));
+						sumOfTerms = sumOfTerms + 4 * Math.sqrt(x - x * x);
+						System.out.println("+ 4f(" + x + "): " + 4 * Math.sqrt(x - x * x));
 					}
 					else if (i % 2 == 0) { // even terms
-						sumOfTerms = sumOfTerms + 2 * Math.sqrt(x) * Math.sqrt(1 - x);
-						System.out.println("+ 2f(" + x + "): " + 2 * Math.sqrt(x) * Math.sqrt(1 - x));
+						sumOfTerms = sumOfTerms + 2 * Math.sqrt(x - x * x);
+						System.out.println("+ 2f(" + x + "): " + 2 * Math.sqrt(x - x * x));
 					}
 				}
 				
-				sumOfTerms = sumOfTerms + Math.sqrt(0.25) * Math.sqrt(1 - 0.25); // add the last term
-				System.out.println("+ f(0.25): " + Math.sqrt(0.25) * Math.sqrt(1 - 0.25));
+				sumOfTerms = sumOfTerms + Math.sqrt(0.25 - 0.25 * 0.25); // add the last term
+				System.out.println("+ f(0.25): " + Math.sqrt(0.25 - 0.25 * 0.25));
 				
 				System.out.println();
 				System.out.println("Sum of terms: " + sumOfTerms);
