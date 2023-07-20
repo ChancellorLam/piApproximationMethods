@@ -160,8 +160,58 @@ public class PiApproximationMethods {
 				System.out.print("The area under the curve found through Simpson's rule can be used in Newton's Method to ");
 				System.out.println("approximate pi to the value of: " + piApproximation);
 			}
-			else if (chosenMethod.equals("1")) {
-				System.out.println("Not implemented yet, sorry!");
+			
+			else if (chosenMethod.equals("1")) { // if user decides to use Midpoint Rule
+				
+				int numSubintervals = 0;
+				double subintervalWidth;
+				
+				System.out.print("Would you like to choose how many subintervals? (Y/N) ");
+				System.out.println("If not, a default amount will be chosen.");
+				userInput = input.nextLine();
+				
+				if (userInput.toLowerCase().equals("y") || userInput.toLowerCase().equals("yes")) { // user wants to choose
+					System.out.println("How many subintervals? (This amount must be even and greater than 0)");
+					while (startIntegrating == false) {
+						
+						numSubintervals = input.nextInt();
+						if (numSubintervals <= 0) { // 0 subintervals is invalid, ask again for a valid number
+							System.out.println("Invalid amount. You need to input an even number that is greater than zero.");
+						}
+						else { // valid number of subintervals, calculate area under curve using Simpson's rule
+							startIntegrating = true;
+						}
+					}
+				}
+				else { // default scenario; if user doesn't choose how many subintervals
+					numSubintervals = 6000;
+					startIntegrating = true;
+				}
+				
+				// numerically integrate using Midpoint Rule
+				double sumOfTerms = 0;
+				subintervalWidth = 0.25 / (double) numSubintervals;
+				double midpointSize = subintervalWidth / 2;
+				double x = midpointSize; 
+				
+				for (int i = 0; i < numSubintervals; i++) { 
+					sumOfTerms = sumOfTerms + Math.sqrt(x - x * x);
+					System.out.println("f(" + x + "): " + sumOfTerms);
+					x = x + subintervalWidth;
+				}
+				
+				System.out.println();
+				System.out.println("Sum of terms: " + sumOfTerms);
+				System.out.println("Number of subintervals: " + numSubintervals);
+				System.out.println("Width of subintervals: " + subintervalWidth);
+				
+				//finish calculating integral (area under curve)
+				double areaUnderCurve = sumOfTerms * subintervalWidth; // multiply sum of terms by width of subintervals
+				System.out.println("Area under curve: " + sumOfTerms + " * (" + subintervalWidth + "/3)");
+				double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve; // use area under curve in Newton's method
+				System.out.println("Area under curve: " + areaUnderCurve);
+				System.out.print("The area under the curve found through Simpson's rule can be used in Newton's Method to ");
+				System.out.println("approximate pi to the value of: " + piApproximation);
 			}
 			else if (chosenMethod.equals("2")) {
 				System.out.println("Not implemented yet, sorry!");
