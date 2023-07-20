@@ -210,7 +210,7 @@ public class PiApproximationMethods {
 				System.out.println("Area under curve: " + sumOfTerms + " * (" + subintervalWidth + "/3)");
 				double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve; // use area under curve in Newton's method
 				System.out.println("Area under curve: " + areaUnderCurve);
-				System.out.print("The area under the curve found through Simpson's rule can be used in Newton's Method to ");
+				System.out.print("The area under the curve found through Midpoint rule can be used in Newton's Method to ");
 				System.out.println("approximate pi to the value of: " + piApproximation);
 			}
 			else if (chosenMethod.equals("2")) {
