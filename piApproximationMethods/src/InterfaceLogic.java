@@ -2,13 +2,13 @@ package piApproximationMethods;
 import java.util.Scanner;
 
 public class InterfaceLogic {
+	private static Scanner input = new Scanner(System.in);
 	
 	static void approximatePi() {
+		boolean methodNotChosen = true;
 		
-		Scanner input = new Scanner(System.in);
-		boolean startApproximating = false;
-		
-		while(startApproximating == false) {
+		while (methodNotChosen) {
+			
 			System.out.print("What method would you like to use in order to approximate pi? ");
 			System.out.println("Choose by inputting a number from 0-4:");
 			System.out.println("[0] Archimedes Method:");
@@ -23,15 +23,15 @@ public class InterfaceLogic {
 			}
 			else if (chosenMethod.equals("1")) {
 				PiApproximationMethods.madhavaLeibniz();
-				startApproximating = true;
+				methodNotChosen = false;
 			}
 			else if (chosenMethod.equals("2")) {
 				PiApproximationMethods.newtonsMethod();
-				startApproximating = true;
+				methodNotChosen = false;
 			}
 			else if (chosenMethod.equals("3")) {
 				PiApproximationMethods.monteCarlo();
-				startApproximating = true;
+				methodNotChosen = false;
 			}
 			else if (chosenMethod.equals("4")) {
 				System.out.println("Not implemented yet, sorry!");

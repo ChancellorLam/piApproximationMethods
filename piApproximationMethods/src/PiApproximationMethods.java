@@ -4,16 +4,16 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class PiApproximationMethods {
+	private static Scanner input = new Scanner(System.in);
 	
 	static void madhavaLeibniz() {
-		
-		Scanner input = new Scanner(System.in);
 		long counter = 0;
 		double currentValue = 0;
 		long denominator = 1;
 		double newValue;
 		
 		System.out.println("How many iterations would you like to perform?");
+		
 		long numOfIterations = input.nextLong();
 		for (long i = 0; i < numOfIterations; i++) { // 4/1 - 4/3 + 4/5 - 4/7 + 4/9...± 4/n
 			if (counter % 2 == 0) {	// + terms
@@ -33,11 +33,10 @@ public class PiApproximationMethods {
 				denominator = denominator + 2;
 			}
 		}
+		
 	}
 	
 	static void monteCarlo() {
-		
-		Scanner input = new Scanner(System.in);
 		Random random = new Random();
 		int pointsInsideCircle = 0;
 		
@@ -59,36 +58,34 @@ public class PiApproximationMethods {
 			}
 		}
 		
-		System.out.println("After plotting " + numOfPoints + " points in a square of side length 0.5, " + pointsInsideCircle
-				+ " points were inside of a quarter circle with a radius of 1.");
-		System.out.println("By dividing the ratio of points inside the circle by the total amount of points in the square"
-				+ " we can approximate pi/4, which we can then use to find pi:"); 
+		System.out.print("After plotting " + numOfPoints + " points in a square of side length 0.5, " + pointsInsideCircle);
+		System.out.println(" points were inside of a quarter circle with a radius of 1.");
+		
+		System.out.print("By dividing the ratio of points inside the circle by the total amount of points in the square");
+		System.out.println(" we can approximate pi/4, which we can then use to find pi:"); 
+		
 		System.out.println(pointsInsideCircle + "/" + numOfPoints + " * 4 = " + pointsInsideCircle/(double)numOfPoints * 4);
+		
 	}
 	
 	static void newtonsMethod() {
-		
-		Scanner input = new Scanner(System.in);
 		String userInput;
 		boolean startIntegrating = false;
 		
-		while(startIntegrating == false) { // determine how user wants to find area under curve to use Newton's method to find pi
+		while (startIntegrating == false) { // determine how user wants to find area under curve to use Newton's method to find pi
 			System.out.print("How would you like to numerically calculate the area under the curve? ");
 			System.out.println("The most accurate for this scenario is [0] Simpson's rule:");
 			System.out.println("Choose by inputting a number from 0-2:");
 			
 			// calculates area under a curve using parabolas
 			System.out.println("[0] Simpson's Rule (Most Accurate for Curves):");
-			
 			// calculates area under a curve using rectangles
 			System.out.println("[1] Midpoint Rule (Most Accurate for Step functions):");
-			
 			//calculates area under a curve using trapezoids
 			System.out.println("[2] Trapezoidal Rule (Most Accurate for Linear functions):");
-			
 			String chosenMethod = input.nextLine();
-			if (chosenMethod.equals("0") || chosenMethod.isEmpty()) { // if user decides to use Simpson's rule
-				
+			
+			if (chosenMethod.equals("0") || chosenMethod.isEmpty()) { // user decides to use Simpson's rule, also default scenario
 				int numSubintervals = 0;
 				double subintervalWidth;
 				
@@ -96,7 +93,7 @@ public class PiApproximationMethods {
 				System.out.println("If not, a default amount will be chosen.");
 				userInput = input.nextLine();
 				
-				if (userInput.toLowerCase().equals("y") || userInput.toLowerCase().equals("yes")) { // user wants to choose
+				if (userInput.toLowerCase().equals("y") || userInput.toLowerCase().equals("yes")) { // user wants to choose number of subintervals
 					System.out.println("How many subintervals? (This amount must be even and greater than 0)");
 					while (startIntegrating == false) {
 						numSubintervals = input.nextInt();
@@ -104,11 +101,9 @@ public class PiApproximationMethods {
 						if (numSubintervals % 2 != 0) { // if the number of subintervals is not even, ask again for a valid number
 							System.out.println("Invalid amount. You need to input an even number that is greater than zero.");
 						}
-						
 						else if (numSubintervals <= 0) { // 0 subintervals is invalid, ask again for a valid number
 							System.out.println("Invalid amount. You need to input an even number that is greater than zero.");
 						}
-						
 						else { // valid number of subintervals, calculate area under curve using Simpson's rule
 							startIntegrating = true;
 						}
@@ -280,6 +275,7 @@ public class PiApproximationMethods {
 				System.out.println("Invalid input. Please input a number from 0-2.");
 			}
 		}
+		
 	}
 	
 }
