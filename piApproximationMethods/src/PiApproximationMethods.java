@@ -38,8 +38,7 @@ public class PiApproximationMethods {
 		Random random = new Random();
 		int pointsInsideCircle = 0;
 		
-		System.out.println("How many points would you like to plot?");
-		int numOfPoints = input.nextInt();
+		long numOfPoints = InterfaceLogic.obtainInputFromUser("How many points would you like to plot?");
 		
 		for (int i = 0; i < numOfPoints; i++) {
 			// Creates random x and y coordinates from 0 to 1 which creates a point in a square
