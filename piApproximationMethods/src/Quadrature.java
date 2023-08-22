@@ -2,7 +2,7 @@ package piApproximationMethods;
 
 public class Quadrature {
 	
-	double simpsonsRule(int numSubintervals) {  // numerically integrate using Simpson's Rule
+	static double simpsonsRule(int numSubintervals) {  // numerically integrate using Simpson's Rule
 		int numEndpoints = numSubintervals + 1;
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
@@ -35,10 +35,13 @@ public class Quadrature {
 		
 		// multiply sum of terms by width of subintervals / 3 to approximate integral with parabolas
 		double areaUnderCurve = sumOfTerms * subintervalWidth / 3;
+		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * (" + subintervalWidth + "/3) = ");
+		System.out.println(areaUnderCurve);
+		
 		return areaUnderCurve;
 	}
 	
-	double midpointRule(int numSubintervals) {  // numerically integrate using Midpoint Rule
+	static double midpointRule(int numSubintervals) {  // numerically integrate using Midpoint Rule
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
 		double midpointSize = subintervalWidth / 2;
@@ -57,10 +60,11 @@ public class Quadrature {
 		
 		// multiply all midpoints by width of subintervals to approximate integral with rectangles
 		double areaUnderCurve = sumOfTerms * subintervalWidth;
+		
 		return areaUnderCurve;
 	}
 	
-	double trapezoidalRule(int numSubintervals) {  // numerically integrate using Trapezoidal Rule
+	static double trapezoidalRule(int numSubintervals) {  // numerically integrate using Trapezoidal Rule
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
 		

@@ -84,7 +84,6 @@ public class PiApproximationMethods {
 			
 			if (chosenMethod.equals("0") || chosenMethod.isEmpty()) { // user decides to use Simpson's rule, also default scenario
 				int numSubintervals = 0;
-				double subintervalWidth;
 				
 				System.out.print("Would you like to choose how many subintervals? (Y/N) ");
 				System.out.println("If not, a default amount will be chosen.");
@@ -111,44 +110,8 @@ public class PiApproximationMethods {
 					startIntegrating = true;
 				}
 				
-				// numerically integrate using Simpson's Rule
-				int numEndpoints = numSubintervals + 1;
-				double sumOfTerms = 0;
-				subintervalWidth = 0.25 / (double) numSubintervals;
-				
-				 // the 0th and last terms in the calculation of the integral using Simpson's rule are not modified
-				 // but for all other terms, odd terms are multiplied by 4 and even terms are multiplied by 2
-				 // so an example calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
-				 // and then all of this would be multiplied by width of the subintervals / 3
-				
-				sumOfTerms = sumOfTerms + Math.sqrt(0 - 0 * 0); // this is the 0th term
-				System.out.println("f(0): 0");
-				
-				for (int i = 1; i < numEndpoints - 1; i++) { // modify every term except for 0th and last
-					double x = subintervalWidth * i;
-					if (i % 2 == 1) { // odd terms
-						sumOfTerms = sumOfTerms + 4 * Math.sqrt(x - x * x);
-						System.out.println("+ 4f(" + x + "): " + 4 * Math.sqrt(x - x * x));
-					}
-					else if (i % 2 == 0) { // even terms
-						sumOfTerms = sumOfTerms + 2 * Math.sqrt(x - x * x);
-						System.out.println("+ 2f(" + x + "): " + 2 * Math.sqrt(x - x * x));
-					}
-				}
-				
-				sumOfTerms = sumOfTerms + Math.sqrt(0.25 - 0.25 * 0.25); // add the last term
-				System.out.println("+ f(0.25): " + Math.sqrt(0.25 - 0.25 * 0.25));
-				
-				System.out.println();
-				System.out.println("Sum of terms: " + sumOfTerms);
-				System.out.println("Number of subintervals: " + numSubintervals);
-				System.out.println("Width of subintervals: " + subintervalWidth);
-				
-				//finish calculating integral (area under curve)
-				double areaUnderCurve = sumOfTerms * subintervalWidth / 3; // multiply sum of terms by width of subintervals / 3
-				System.out.println("Area under curve: " + sumOfTerms + " * (" + subintervalWidth + "/3)");
+				double areaUnderCurve = Quadrature.simpsonsRule(numSubintervals);
 				double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve; // use area under curve in Newton's method
-				System.out.println("Area under curve: " + areaUnderCurve);
 				System.out.print("The area under the curve found through Simpson's rule can be used in Newton's Method to ");
 				System.out.println("approximate pi to the value of: " + piApproximation);
 			}
