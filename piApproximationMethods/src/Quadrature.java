@@ -58,8 +58,10 @@ public class Quadrature {
 		System.out.println("Number of subintervals: " + numSubintervals);
 		System.out.println("Width of subintervals: " + subintervalWidth);
 		
-		// multiply all midpoints by width of subintervals to approximate integral with rectangles
+		// multiply the sum of all midpoints by width of subintervals to approximate integral with rectangles
 		double areaUnderCurve = sumOfTerms * subintervalWidth;
+		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * " + subintervalWidth + " = ");
+		System.out.println(areaUnderCurve);
 		
 		return areaUnderCurve;
 	}
