@@ -7,11 +7,10 @@ public class Quadrature {
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
 		
-		 // the 0th and last terms in the calculation of the integral using Simpson's rule are not modified
-		 // but for all other terms, odd terms are multiplied by 4 and even terms are multiplied by 2
-		 // so an example calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
-		 // then all of this would be multiplied by width of the subintervals / 3
-		
+		// the 0th and last terms in the calculation of the integral using Simpson's rule are not modified
+		// but for all other terms, odd terms are multiplied by 4 and even terms are multiplied by 2
+		// so an example calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
+		// then all of this would be multiplied by width of the subintervals / 3
 		sumOfTerms = sumOfTerms + Math.sqrt(0 - 0 * 0); // this is the 0th term
 		System.out.println("f(0): 0");
 		for (int i = 1; i < numEndpoints - 1; i++) { // modify and then add every term except for 0th and last
@@ -35,7 +34,7 @@ public class Quadrature {
 		
 		// multiply sum of terms by width of subintervals / 3 to approximate integral with parabolas
 		double areaUnderCurve = sumOfTerms * subintervalWidth / 3;
-		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * (" + subintervalWidth + "/3) = ");
+		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * (" + subintervalWidth + " / 3) = ");
 		System.out.println(areaUnderCurve);
 		
 		return areaUnderCurve;
@@ -70,11 +69,10 @@ public class Quadrature {
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
 		
-		 // the 0th and last terms in the calculation of the integral using Trapezoidal rule are not modified
-		 // but all other terms are multiplied by 2
-		 // so an example calculation would be: f(0) + 2f(1) + 2f(2) + 2f(3) + ... f(n)
-		 // and then all of this would be multiplied by width of the subintervals / 2
-		
+		// the 0th and last terms in the calculation of the integral using Trapezoidal rule are not modified
+		// but all other terms are multiplied by 2
+		// so an example calculation would be: f(0) + 2f(1) + 2f(2) + 2f(3) + ... f(n)
+		// and then all of this would be multiplied by width of the subintervals / 2
 		sumOfTerms = sumOfTerms + Math.sqrt(0 - 0 * 0); // this is the 0th term
 		System.out.println("f(0): 0");
 		for (int i = 1; i < numSubintervals; i++) { // modify every term except for 0th and last
@@ -92,7 +90,7 @@ public class Quadrature {
 		
 		// multiply the sum of terms by width of subintervals / 2 to approximate integral with trapezoids
 		double areaUnderCurve = sumOfTerms * subintervalWidth / 2;
-		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * (" + subintervalWidth + "/2) = ");
+		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * (" + subintervalWidth + " / 2) = ");
 		System.out.println(areaUnderCurve);
 		
 		return areaUnderCurve;
