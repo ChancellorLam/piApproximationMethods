@@ -12,9 +12,7 @@ public class PiApproximationMethods {
 		long denominator = 1;
 		double newValue;
 		
-		System.out.println("How many iterations would you like to perform?");
-		
-		long numOfIterations = input.nextLong();
+		long numOfIterations = InterfaceLogic.obtainInputFromUser("How many iterations would you like to perform?");
 		for (long i = 0; i < numOfIterations; i++) { // 4/1 - 4/3 + 4/5 - 4/7 + 4/9...± 4/n
 			if (counter % 2 == 0) {	// + terms
 				newValue = currentValue + 4.0/denominator;
