@@ -90,8 +90,11 @@ public class Quadrature {
 		System.out.println("Number of subintervals: " + numSubintervals);
 		System.out.println("Width of subintervals: " + subintervalWidth);
 		
-		// multiply sum of terms by width of subintervals / 2 to approximate integral with trapezoids
+		// multiply the sum of terms by width of subintervals / 2 to approximate integral with trapezoids
 		double areaUnderCurve = sumOfTerms * subintervalWidth / 2;
+		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * (" + subintervalWidth + "/2) = ");
+		System.out.println(areaUnderCurve);
+		
 		return areaUnderCurve;
 	}
 }
