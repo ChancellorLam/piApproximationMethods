@@ -83,7 +83,7 @@ public class PiApproximationMethods {
 			String chosenMethod = input.nextLine();
 			
 			if (chosenMethod.equals("0") || chosenMethod.isEmpty()) { // user decides to use Simpson's rule, also default scenario
-				int numSubintervals = 0;
+				long numSubintervals = 0;
 				
 				System.out.print("Would you like to choose how many subintervals? (Y/N) ");
 				System.out.println("If not, a default amount will be chosen.");
@@ -117,7 +117,7 @@ public class PiApproximationMethods {
 			}
 			
 			else if (chosenMethod.equals("1")) { // if user decides to use Midpoint Rule
-				int numSubintervals = 0;
+				long numSubintervals = 0;
 				
 				System.out.print("Would you like to choose how many subintervals? (Y/N) ");
 				System.out.println("If not, a default amount will be chosen.");
@@ -147,7 +147,7 @@ public class PiApproximationMethods {
 				System.out.println("approximate pi to the value of: " + piApproximation);
 			}
 			else if (chosenMethod.equals("2")) { // if user decides to use trapezoidal rule
-				int numSubintervals = 0;
+				long numSubintervals = 0;
 				
 				System.out.print("Would you like to choose how many subintervals? (Y/N) ");
 				System.out.println("If not, a default amount will be chosen.");
