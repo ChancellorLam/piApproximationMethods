@@ -40,13 +40,13 @@ public class Quadrature {
 		return areaUnderCurve;
 	}
 	
-	static double midpointRule(int numSubintervals) {  // numerically integrate using Midpoint Rule
+	static double midpointRule(long numSubintervals) {  // numerically integrate using Midpoint Rule
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
 		double midpointSize = subintervalWidth / 2;
 		double x = midpointSize; 
 		
-		for (int i = 0; i < numSubintervals; i++) {  // sum up all midpoints
+		for (long i = 0; i < numSubintervals; i++) {  // sum up all midpoints
 			sumOfTerms = sumOfTerms + Math.sqrt(x - x * x);
 			System.out.println("f(" + x + "): " + sumOfTerms);
 			x = x + subintervalWidth;
