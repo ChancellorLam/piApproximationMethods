@@ -65,7 +65,7 @@ public class Quadrature {
 		return areaUnderCurve;
 	}
 	
-	static double trapezoidalRule(int numSubintervals) {  // numerically integrate using Trapezoidal Rule
+	static double trapezoidalRule(long numSubintervals) {  // numerically integrate using Trapezoidal Rule
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
 		
@@ -75,7 +75,7 @@ public class Quadrature {
 		// and then all of this would be multiplied by width of the subintervals / 2
 		sumOfTerms = sumOfTerms + Math.sqrt(0 - 0 * 0); // this is the 0th term
 		System.out.println("f(0): 0");
-		for (int i = 1; i < numSubintervals; i++) { // modify every term except for 0th and last
+		for (long i = 1; i < numSubintervals; i++) { // modify every term except for 0th and last
 			double x = subintervalWidth * i;
 			sumOfTerms = sumOfTerms + 2 * Math.sqrt(x - x * x);
 			System.out.println("+ 2f(" + x + "): " + sumOfTerms);
