@@ -27,8 +27,8 @@ public class InterfaceLogic {
 				System.out.println();
 			}
 		}
-		return userInput;
 		
+		return userInput;
 	}
 	
 	static void approximatePi() {
