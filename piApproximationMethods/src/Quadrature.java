@@ -2,8 +2,8 @@ package piApproximationMethods;
 
 public class Quadrature {
 	
-	static double simpsonsRule(int numSubintervals) {  // numerically integrate using Simpson's Rule
-		int numEndpoints = numSubintervals + 1;
+	static double simpsonsRule(long numSubintervals) {  // numerically integrate using Simpson's Rule
+		long numEndpoints = numSubintervals + 1;
 		double sumOfTerms = 0;
 		double subintervalWidth = 0.25 / (double) numSubintervals;
 		
@@ -13,7 +13,7 @@ public class Quadrature {
 		// then all of this would be multiplied by width of the subintervals / 3
 		sumOfTerms = sumOfTerms + Math.sqrt(0 - 0 * 0); // this is the 0th term
 		System.out.println("f(0): 0");
-		for (int i = 1; i < numEndpoints - 1; i++) { // modify and then add every term except for 0th and last
+		for (long i = 1; i < numEndpoints - 1; i++) { // modify and then add every term except for 0th and last
 			double x = subintervalWidth * i;
 			if (i % 2 == 1) { // odd terms
 				sumOfTerms = sumOfTerms + 4 * Math.sqrt(x - x * x);
