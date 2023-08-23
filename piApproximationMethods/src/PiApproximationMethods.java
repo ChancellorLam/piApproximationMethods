@@ -36,11 +36,11 @@ public class PiApproximationMethods {
 	
 	static void monteCarlo() {
 		Random random = new Random();
-		int pointsInsideCircle = 0;
+		long pointsInsideCircle = 0;
 		
 		long numOfPoints = InterfaceLogic.obtainInputFromUser("How many points would you like to plot?");
 		
-		for (int i = 0; i < numOfPoints; i++) {
+		for (long i = 0; i < numOfPoints; i++) {
 			// Creates random x and y coordinates from 0 to 1 which creates a point in a square
 			double x = random.nextDouble();
 			double y = random.nextDouble();
