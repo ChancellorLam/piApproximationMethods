@@ -110,7 +110,8 @@ public class InterfaceLogic {
 				methodNotChosen = false;
 			}
 			else if (chosenMethod.equals("4")) {
-				System.out.println("Not implemented yet, sorry!");
+				PiApproximationMethods.ramanujanSato();
+				methodNotChosen = false;
 			}
 			else if (chosenMethod.isEmpty()) {
 				System.out.println("Invalid input. Please input a number from 0-4.");

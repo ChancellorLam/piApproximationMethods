@@ -104,4 +104,35 @@ public class PiApproximationMethods {
 		System.out.println("approximate pi to the value of: " + piApproximation);
 	}
 	
+	static long factorial(int maxFactor) {  // long data type will only support up to 20
+		long product = 1;
+		
+		for (long i = 2; i <= maxFactor; i++) {
+			product = i * product;
+		}
+		return product;
+	}
+	
+	static void ramanujanSato() {
+		long numOfIterations = -1;
+		while (numOfIterations < 0 || numOfIterations > 20) {
+			long numOfIterationsAttempt = InterfaceLogic.obtainInputFromUser("How many iterations would you like to perform? (16 max)", 0);
+			if (numOfIterationsAttempt > 16) {
+				System.out.println("Invalid input. You need to enter a positive integer that is less than 17.");
+			}
+			else {
+				numOfIterations = numOfIterationsAttempt;
+			}
+		}
+		double constant = 2 * Math.sqrt(2) / Math.pow(99, 2);
+		double factorialPart = 0;
+		double secondPart = 0;
+		double sum = 0;
+		for (int i = 0; i <= numOfIterations; i++ ) {
+			factorialPart = factorial(4 * i) / Math.pow(factorial(i), 4);
+			secondPart = (26390 * i + 1103) / Math.pow(396, 4 * i);
+			sum = sum + (secondPart * factorialPart);
+			System.out.println("Iteration " + i + ": " + 1 / (sum * constant));
+		}
+	}
 }
