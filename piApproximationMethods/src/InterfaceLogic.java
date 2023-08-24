@@ -1,14 +1,13 @@
 package piApproximationMethods;
-import java.util.Scanner;
 import java.util.*;
 
 public class InterfaceLogic {
 	private static Scanner input = new Scanner(System.in);
 	
-	static long obtainInputFromUser(String question) {
-		long userInput = 0;
+	static long obtainInputFromUser(String question, int minimum) {
+		long userInput = minimum;
 		
-		while (userInput < 1) {
+		while (userInput < minimum + 1) {
 			boolean errorMsg = false;
 			
 			System.out.println(question);
@@ -17,18 +16,68 @@ public class InterfaceLogic {
 			}
 			catch (InputMismatchException e) {
 				errorMsg = true;
-				System.out.println("Invalid input. You must enter a positive integer that is at least 1.");
+				System.out.println("Invalid input. You must enter a positive integer that is at least " + minimum + ".");
 				System.out.println();
 				input.nextLine();
 			}
 			
-			if (userInput < 1 && errorMsg == false) {
-				System.out.println("Invalid input. You must enter a positive integer that is at least 1.");
+			if (userInput < minimum && errorMsg == false) {
+				System.out.println("Invalid input. You must enter a positive integer that is at least " + minimum + ".");
 				System.out.println();
 			}
 		}
 		
 		return userInput;
+	}
+	
+	static long askForCustomSubintervals() {
+		long numSubintervals = 0;
+		boolean numSubintervalsNotValid = true;
+		
+		while (numSubintervalsNotValid) {
+			System.out.print("Would you like to choose how many subintervals? ");
+			System.out.println("If not, a default amount (6000) will be chosen.");
+			System.out.println("[1] Yes:");
+			System.out.println("[2] No:");
+			
+			String choice = input.nextLine();
+			if (choice.equals("1")) {
+				while (numSubintervals == 0) {
+					numSubintervals = obtainInputFromUser("How many subintervals?", 0);
+					numSubintervalsNotValid = false;
+				}
+			}
+			else if (choice.equals("2")) {
+				numSubintervals = 6000;
+				numSubintervalsNotValid = false;
+			}
+			else {
+				System.out.println("Invalid input. Please answer [1] Yes or [2] No.");
+				System.out.println();
+			}
+		}
+		return numSubintervals;
+	}
+	
+	
+	static long obtainEvenNumSubintervals() {
+		long numSubintervals = 0;
+		boolean numSubintervalsNotEven = true;
+		
+		while (numSubintervalsNotEven) {
+			long numSubintervalsAttempt = askForCustomSubintervals();
+			System.out.println(numSubintervalsAttempt);
+			if (numSubintervalsAttempt % 2 != 0) { // if the number of subintervals is not even, ask again for a valid number
+				System.out.println("Invalid amount. You need to input an even number that is at least 2.");
+				System.out.println();
+				input.nextLine();
+			}
+			else {
+				numSubintervals = numSubintervalsAttempt;
+				numSubintervalsNotEven = false;
+			}
+		}
+		return numSubintervals;
 	}
 	
 	static void approximatePi() {

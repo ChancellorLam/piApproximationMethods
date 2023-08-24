@@ -12,20 +12,20 @@ public class Quadrature {
 		// so an example calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
 		// then all of this would be multiplied by width of the subintervals / 3
 		sumOfTerms = sumOfTerms + Math.sqrt(0 - 0 * 0); // this is the 0th term
-		System.out.println("f(0): 0");
+//		System.out.println("f(0): 0");
 		for (long i = 1; i < numEndpoints - 1; i++) { // modify and then add every term except for 0th and last
 			double x = subintervalWidth * i;
 			if (i % 2 == 1) { // odd terms
 				sumOfTerms = sumOfTerms + 4 * Math.sqrt(x - x * x);
-				System.out.println("+ 4f(" + x + "): " + 4 * Math.sqrt(x - x * x));
+//				System.out.println("+ 4f(" + x + "): " + 4 * Math.sqrt(x - x * x));
 			}
 			else if (i % 2 == 0) { // even terms
 				sumOfTerms = sumOfTerms + 2 * Math.sqrt(x - x * x);
-				System.out.println("+ 2f(" + x + "): " + 2 * Math.sqrt(x - x * x));
+//				System.out.println("+ 2f(" + x + "): " + 2 * Math.sqrt(x - x * x));
 			}
 		}
 		sumOfTerms = sumOfTerms + Math.sqrt(0.25 - 0.25 * 0.25); // add the last term
-		System.out.println("+ f(0.25): " + Math.sqrt(0.25 - 0.25 * 0.25));
+//		System.out.println("+ f(0.25): " + Math.sqrt(0.25 - 0.25 * 0.25));
 		
 		System.out.println();
 		System.out.println("Sum of terms: " + sumOfTerms);
