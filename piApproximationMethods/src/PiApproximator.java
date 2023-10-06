@@ -3,7 +3,48 @@ import java.util.Random;
 import java.lang.Math;
 
 public class PiApproximator {
-	
+
+	void archimedesMethod() {
+		// start with a hexagon
+		int numSideLengths = 6;
+
+		// the Ancient Greeks figured out these trigonometric ratios using properties of special right triangles
+		double sinOfCurrentAngle = 0.5;
+		double cosOfCurrentAngle = Math.sqrt(3) / 2;
+		double tanOfCurrentAngle = sinOfCurrentAngle / cosOfCurrentAngle;
+
+		/*	Archimedes split his hexagon into 6 equilateral triangles, and then bisected those 6 equilateral triangles
+			into 12 total right triangles inside his hexagon. Using the trigonometric ratios known to him, he was able
+			to calculate the perimeter of the inscribed and circumscribed hexagons to find a lower and upper bound for
+			pi
+		 */
+		double innerPolygonPerimeter = sinOfCurrentAngle * numSideLengths;
+		double outerPolygonPerimeter = tanOfCurrentAngle * numSideLengths;
+		System.out.println("By inscribing and circumscribing hexagons into a circle of radius 0.5 and finding their" +
+				" perimeters, we find that " + innerPolygonPerimeter + " < π < " + outerPolygonPerimeter);
+
+		/*	Archimedes wasn't able to calculate trigonometric functions, but he knew the half-angle identities for
+			sine and cosine, so he was able to find the perimeter of an n * 2 sided polygon because an n * 2 sided
+			polygon has 2 times more sides than an n sided polygon, so there are 2 times as many right triangles. Since
+			he knew how to calculate the perimeter for a hexagon using trigonometry, he was able to calculate by hand
+			the perimeter for a 12-gon and a 24-gon and so on up to a 96-gon where he was satisfied with his
+			approximation for π.
+		*/
+		for (int i = 0; i < 12; i++) { // floating point issues occur after the 12th term and results are erratic
+			numSideLengths = numSideLengths * 2;
+			sinOfCurrentAngle = ExtraMath.sinHalfAngle(cosOfCurrentAngle);
+			cosOfCurrentAngle = ExtraMath.cosHalfAngle(cosOfCurrentAngle);
+			tanOfCurrentAngle = sinOfCurrentAngle / cosOfCurrentAngle;
+
+			innerPolygonPerimeter = sinOfCurrentAngle * numSideLengths;
+			outerPolygonPerimeter = tanOfCurrentAngle * numSideLengths;
+			System.out.println("By inscribing and circumscribing " + numSideLengths + "-gons into a circle of radius " +
+					"0.5 and finding their perimeters, we find that " + innerPolygonPerimeter + " < π < "
+					+ outerPolygonPerimeter);
+		}
+
+	}
+
 	void madhavaLeibniz() {
 		long counter = 0;
 		double currentValue = 0;
@@ -102,15 +143,6 @@ public class PiApproximator {
 
 	}
 
-	static long factorial(int maxFactor) {  // long data type will only support up to 20
-		long product = 1;
-		
-		for (long i = 2; i <= maxFactor; i++) {
-			product = i * product;
-		}
-		return product;
-	}
-	
 	void ramanujanSato() {
 		InputTaker inputTaker = new InputTaker();
 		String question = "How many iterations would you like to perform? (16 max)";
@@ -121,7 +153,7 @@ public class PiApproximator {
 		double secondPart;
 		double sum = 0;
 		for (int i = 0; i <= numOfIterations; i++ ) {
-			factorialPart = factorial(4 * i) / Math.pow(factorial(i), 4);
+			factorialPart = ExtraMath.factorial(4 * i) / Math.pow(ExtraMath.factorial(i), 4);
 			secondPart = (26390 * i + 1103) / Math.pow(396, 4 * i);
 			sum = sum + (secondPart * factorialPart);
 			System.out.println("Iteration " + i + ": " + 1 / (sum * constant));

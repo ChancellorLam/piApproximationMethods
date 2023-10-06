@@ -11,7 +11,7 @@ public class Driver {
 		int choice = mainMenu.selectionMenu(prompt, options);
 		PiApproximator piApproximator = new PiApproximator();
 		if (choice == 0) {
-			System.out.println("Not implemented yet, sorry!");
+			piApproximator.archimedesMethod();
 		}
 		else if (choice == 1) {
 			piApproximator.madhavaLeibniz();
