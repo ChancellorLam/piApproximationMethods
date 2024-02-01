@@ -3,6 +3,7 @@ package piApproximationMethods;
 public class Main {
 	
 	public static void main(String[] args) {
-		Driver.approximatePi();
+		ProgramManager manager = new ProgramManager();
+		manager.approximatePi();
 	}
 }
