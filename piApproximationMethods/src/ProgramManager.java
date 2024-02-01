@@ -1,8 +1,8 @@
 package piApproximationMethods;
 
-public class Driver {
+public class ProgramManager {
 
-	static void approximatePi() {
+	void approximatePi() {
 		String prompt = "What method would you like to use in order to approximate pi?";
 		String[] options = {"Archimedes' Method", "Madhava-Leibniz Infinite Series", "Newton's Method",
 				"Monte-Carlo Method", "Ramanujan-Sato Series"};
