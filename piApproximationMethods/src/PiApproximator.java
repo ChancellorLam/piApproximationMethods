@@ -159,4 +159,19 @@ public class PiApproximator {
 			System.out.println("Iteration " + i + ": " + 1 / (sum * constant));
 		}
 	}
+
+	public void chudnovskyAlgorithm() {
+		InputTaker inputTaker = new InputTaker();
+		String question = "How many iterations would you like to perform? (16 max)";
+		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
+
+		double sum = 0;
+		for (int i = 0; i <= numOfIterations; i++) {
+			double numerator = Math.pow(-1, i) * ExtraMath.factorial(6 * i) * (545140134 * i + 13591409);
+			double denominator = ExtraMath.factorial(3 * i) * Math.pow(ExtraMath.factorial(i), 3) *
+					Math.pow(640320, (3 * i + 1.5));
+			sum = sum + numerator/denominator * 12;
+			System.out.println("Iteration " + i + ": " + 1 / (sum));
+		}
+	}
 }
