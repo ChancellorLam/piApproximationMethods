@@ -155,8 +155,8 @@ public class PiApproximator {
 		for (int i = 0; i <= numOfIterations; i++ ) {
 			factorialPart = ExtraMath.factorial(4 * i) / Math.pow(ExtraMath.factorial(i), 4);
 			secondPart = (26390 * i + 1103) / Math.pow(396, 4 * i);
-			sum = sum + (secondPart * factorialPart);
-			System.out.println("Iteration " + i + ": " + 1 / (sum * constant));
+			sum = sum + (secondPart * factorialPart * constant);
+			System.out.println("Iteration " + i + ": " + (1 / sum));
 		}
 	}
 
