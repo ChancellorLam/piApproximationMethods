@@ -24,7 +24,7 @@ public class ProgramManager {
 				piApproximator.newtonsMethod();
 			}
 			else if (choice == 3) {
-				piApproximator.monteCarlo();
+				piApproximation = piApproximator.monteCarlo();
 			}
 			else if (choice == 4) {
 				piApproximator.ramanujanSato();

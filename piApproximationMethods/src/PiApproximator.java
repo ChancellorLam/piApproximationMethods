@@ -86,7 +86,7 @@ public class PiApproximator {
 		
 	}
 	
-	void monteCarlo() {
+	char[] monteCarlo() {
 		Random random = new Random();
 		long pointsInsideCircle = 0;
 		InputTaker inputTaker = new InputTaker();
@@ -116,6 +116,7 @@ public class PiApproximator {
 		System.out.println(pointsInsideCircle + "/" + numOfPoints + " * 4 = "
 				+ pointsInsideCircle/(double)numOfPoints * 4);
 
+		return String.valueOf(pointsInsideCircle/(double)numOfPoints * 4).toCharArray();
 	}
 	
 	void newtonsMethod() {
