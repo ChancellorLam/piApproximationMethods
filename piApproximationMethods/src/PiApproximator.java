@@ -112,33 +112,12 @@ public class PiApproximator {
 		MenuGenerator menu = new MenuGenerator();
 		SubintervalQuery query = new SubintervalQuery();
 		IntegralTaker integral = new IntegralTaker();
-		String question = "How would you like to approximate the area under the curve?" +
-				" The most accurate for this scenario is [1] Simpson's rule:";
-		String[] options = {"Simpson's Rule", "Midpoint Rule", "Trapezoidal Rule"};
-		String methodUsed = "";
-
-		int approximationChoice = menu.selectionMenu(question, options);
-		if (approximationChoice == 0) {  // Simpson's Rule
-			int customSubinterval = query.askIfUserWantsToChooseSubintervals();
-			long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
-			areaUnderCurve = integral.simpsonsRule(numSubintervals);
-			methodUsed = options[0];
-		}
-		else if (approximationChoice == 1) {  // Midpoint Rule
-			int customSubinterval = query.askIfUserWantsToChooseSubintervals();
-			long numSubintervals = query.setSubintervals(customSubinterval);
-			areaUnderCurve = integral.midpointRule(numSubintervals);
-			methodUsed = options[1];
-		}
-		else if (approximationChoice == 2) {  // Trapezoidal Rule
-			int customSubinterval = query.askIfUserWantsToChooseSubintervals();
-			long numSubintervals = query.setSubintervals(customSubinterval);
-			areaUnderCurve = integral.trapezoidalRule(numSubintervals);
-			methodUsed = options[2];
-		}
+		int customSubinterval = query.askIfUserWantsToChooseSubintervals();
+		long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
+		areaUnderCurve = integral.simpsonsRule(numSubintervals);
 
 		double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve;  // use area under curve in Newton's method
-		System.out.print("The area under the curve from 0 to 0.25 found through " + methodUsed + " can be used to ");
+		System.out.print("The area under the curve from 0 to 0.25 can be used to ");
 		System.out.println("approximate pi to the value of: " + piApproximation);
 
 	}
