@@ -135,7 +135,7 @@ public class PiApproximator {
 		return String.valueOf(piApproximation).toCharArray();
 	}
 
-	void ramanujanSato() {
+	char[] ramanujanSato() {
 		InputTaker inputTaker = new InputTaker();
 		String question = "How many iterations would you like to perform? (16 max)";
 		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
@@ -150,6 +150,8 @@ public class PiApproximator {
 			sum = sum + (secondPart * factorialPart * constant);
 			System.out.println("Iteration " + i + ": " + (1 / sum));
 		}
+
+		return String.valueOf(1 / sum).toCharArray();
 	}
 
 	public void chudnovskyAlgorithm() {

@@ -27,7 +27,7 @@ public class ProgramManager {
 				piApproximation = piApproximator.monteCarlo();
 			}
 			else if (choice == 4) {
-				piApproximator.ramanujanSato();
+				piApproximation = piApproximator.ramanujanSato();
 			}
 			else if (choice == 5) {
 				piApproximator.chudnovskyAlgorithm();
