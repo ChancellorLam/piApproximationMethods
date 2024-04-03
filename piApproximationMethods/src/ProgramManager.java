@@ -30,7 +30,7 @@ public class ProgramManager {
 				piApproximation = piApproximator.ramanujanSato();
 			}
 			else if (choice == 5) {
-				piApproximator.chudnovskyAlgorithm();
+				piApproximation = piApproximator.chudnovskyAlgorithm();
 			}
 			else if (choice == 6) {
 				continueRunning = false;

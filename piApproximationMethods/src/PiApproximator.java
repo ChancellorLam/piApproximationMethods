@@ -154,7 +154,7 @@ public class PiApproximator {
 		return String.valueOf(1 / sum).toCharArray();
 	}
 
-	public void chudnovskyAlgorithm() {
+	public char[] chudnovskyAlgorithm() {
 		InputTaker inputTaker = new InputTaker();
 		String question = "How many iterations would you like to perform? (16 max)";
 		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
@@ -166,6 +166,8 @@ public class PiApproximator {
 					Math.pow(640320, (3 * i + 1.5));
 			sum = sum + numerator/denominator * 12;
 			System.out.println("Iteration " + i + ": " + 1 / (sum));
+
+			return String.valueOf(1 / sum).toCharArray();
 		}
 	}
 }
