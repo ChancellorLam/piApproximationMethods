@@ -10,11 +10,12 @@ public class ProgramManager {
 				"Monte-Carlo Method", "Ramanujan-Sato Series", "Chudnovsky Algorithm", "Exit"};
 		boolean continueRunning = true;
 		MenuGenerator mainMenu = new MenuGenerator();
+		char[] piApproximation;
 		while (continueRunning) {
 			int choice = mainMenu.selectionMenu(prompt, options);
 			PiApproximator piApproximator = new PiApproximator();
 			if (choice == 0) {
-				piApproximator.archimedesMethod();
+				piApproximation = piApproximator.archimedesMethod();
 			}
 			else if (choice == 1) {
 				piApproximator.madhavaLeibniz();
@@ -38,7 +39,7 @@ public class ProgramManager {
 				System.out.println("Invalid input. Please choose from the 5 available options.");
 				System.out.println();
 			}
-			String actualPi = "3.1415926535897932384626433832795";
+			char[] actualPi = "3.1415926535897932384626433832795".toCharArray();
 			System.out.printf("Actual value of pi: %s\nPress Enter to Continue.", actualPi);
 			input.nextLine();
 		}

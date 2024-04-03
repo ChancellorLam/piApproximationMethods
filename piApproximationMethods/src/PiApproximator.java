@@ -4,7 +4,7 @@ import java.lang.Math;
 
 public class PiApproximator {
 
-	void archimedesMethod() {
+	char[] archimedesMethod() {
 		// start with a hexagon
 		int numSideLengths = 6;
 
@@ -42,6 +42,16 @@ public class PiApproximator {
 					"0.5 and finding their perimeters, we find that " + innerPolygonPerimeter + " < π < "
 					+ outerPolygonPerimeter);
 		}
+
+		char[] lowerPi = String.valueOf(innerPolygonPerimeter).toCharArray();
+		char[] upperPi = String.valueOf(outerPolygonPerimeter).toCharArray();
+		int i = 0;
+		char[] accuratePiDigits = new char[lowerPi.length];
+		while (lowerPi[i] != upperPi[i]) {
+			accuratePiDigits[i] = lowerPi[i];
+			i++;
+		}
+		return accuratePiDigits;
 
 	}
 
