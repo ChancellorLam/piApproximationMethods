@@ -55,7 +55,7 @@ public class PiApproximator {
 
 	}
 
-	void madhavaLeibniz() {
+	char[] madhavaLeibniz() {
 		long counter = 0;
 		double currentValue = 0;
 		long denominator = 1;
@@ -82,6 +82,7 @@ public class PiApproximator {
 				denominator = denominator + 2;
 			}
 		}
+		return String.valueOf(currentValue).toCharArray();
 		
 	}
 	

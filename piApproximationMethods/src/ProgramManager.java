@@ -18,7 +18,7 @@ public class ProgramManager {
 				piApproximation = piApproximator.archimedesMethod();
 			}
 			else if (choice == 1) {
-				piApproximator.madhavaLeibniz();
+				piApproximation = piApproximator.madhavaLeibniz();
 			}
 			else if (choice == 2) {
 				piApproximator.newtonsMethod();
