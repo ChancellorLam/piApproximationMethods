@@ -47,7 +47,7 @@ public class PiApproximator {
 		char[] upperPi = String.valueOf(outerPolygonPerimeter).toCharArray();
 		int i = 0;
 		char[] accuratePiDigits = new char[lowerPi.length];
-		while (lowerPi[i] != upperPi[i]) {
+		while (lowerPi[i] == upperPi[i]) {
 			accuratePiDigits[i] = lowerPi[i];
 			i++;
 		}
@@ -166,8 +166,8 @@ public class PiApproximator {
 					Math.pow(640320, (3 * i + 1.5));
 			sum = sum + numerator/denominator * 12;
 			System.out.println("Iteration " + i + ": " + 1 / (sum));
-
-			return String.valueOf(1 / sum).toCharArray();
 		}
+
+		return String.valueOf(1 / sum).toCharArray();
 	}
 }
