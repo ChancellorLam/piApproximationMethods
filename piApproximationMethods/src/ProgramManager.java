@@ -21,7 +21,7 @@ public class ProgramManager {
 				piApproximation = piApproximator.madhavaLeibniz();
 			}
 			else if (choice == 2) {
-				piApproximator.newtonsMethod();
+				piApproximation = piApproximator.newtonsMethod();
 			}
 			else if (choice == 3) {
 				piApproximation = piApproximator.monteCarlo();

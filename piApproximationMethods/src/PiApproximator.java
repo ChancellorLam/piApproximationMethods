@@ -119,7 +119,7 @@ public class PiApproximator {
 		return String.valueOf(pointsInsideCircle/(double)numOfPoints * 4).toCharArray();
 	}
 	
-	void newtonsMethod() {
+	char[] newtonsMethod() {
 		double areaUnderCurve = 0;
 		MenuGenerator menu = new MenuGenerator();
 		SubintervalQuery query = new SubintervalQuery();
@@ -132,6 +132,7 @@ public class PiApproximator {
 		System.out.print("The area under the curve from 0 to 0.25 can be used to ");
 		System.out.println("approximate pi to the value of: " + piApproximation);
 
+		return String.valueOf(piApproximation).toCharArray();
 	}
 
 	void ramanujanSato() {
