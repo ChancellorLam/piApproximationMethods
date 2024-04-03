@@ -120,13 +120,11 @@ public class PiApproximator {
 	}
 	
 	char[] newtonsMethod() {
-		double areaUnderCurve = 0;
-		MenuGenerator menu = new MenuGenerator();
 		SubintervalQuery query = new SubintervalQuery();
 		IntegralTaker integral = new IntegralTaker();
 		int customSubinterval = query.askIfUserWantsToChooseSubintervals();
 		long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
-		areaUnderCurve = integral.simpsonsRule(numSubintervals);
+		double areaUnderCurve = integral.simpsonsRule(numSubintervals);
 
 		double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve;  // use area under curve in Newton's method
 		System.out.print("The area under the curve from 0 to 0.25 can be used to ");
