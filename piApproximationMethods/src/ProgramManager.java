@@ -48,13 +48,12 @@ public class ProgramManager {
 			}
 			char[] actualPi = "3.1415926535897932384626433832795".toCharArray();
 			int numOfCorrectPiDigits = 0;
-			while (piApproximation[numOfCorrectPiDigits] == actualPi[numOfCorrectPiDigits]) {
+			while (numOfCorrectPiDigits < piApproximation.length && piApproximation[numOfCorrectPiDigits] == actualPi[numOfCorrectPiDigits]) {
 				numOfCorrectPiDigits++;
 			}
 			System.out.println();
 			System.out.println("Approximated value of pi: " + String.valueOf(piApproximation));
 			System.out.println("      Actual value of pi: " + String.valueOf(actualPi));
-			// System.out.println("Actual value of pi: " + String.valueOf(actualPi));
 			System.out.printf("Using %s, we have approximated the number π to %d digits!\n", methodUsed,
 					numOfCorrectPiDigits - 1);
 			System.out.println("Press Enter to Continue.");
