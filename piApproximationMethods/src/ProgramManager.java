@@ -39,26 +39,28 @@ public class ProgramManager {
 				piApproximation = piApproximator.chudnovskyAlgorithm();
 				methodUsed = options[choice];
 			}
-			else if (choice == 6) {
+			else if (choice == 6) { // Exit
 				continueRunning = false;
 			}
 			else {
 				System.out.println("Invalid input. Please choose from the 5 available options.");
 				System.out.println();
 			}
-			char[] actualPi = "3.1415926535897932384626433832795".toCharArray();
-			int numOfCorrectPiDigits = 0;
-			while (numOfCorrectPiDigits < piApproximation.length &&
-					piApproximation[numOfCorrectPiDigits] == actualPi[numOfCorrectPiDigits]) {
-				numOfCorrectPiDigits++;
+			if (continueRunning) {
+				char[] actualPi = "3.1415926535897932384626433832795".toCharArray();
+				int numOfCorrectPiDigits = 0;
+				while (numOfCorrectPiDigits < piApproximation.length &&
+						piApproximation[numOfCorrectPiDigits] == actualPi[numOfCorrectPiDigits]) {
+					numOfCorrectPiDigits++;
+				}
+				System.out.println();
+				System.out.println("Approximated value of pi: " + String.valueOf(piApproximation).trim());
+				System.out.println("      Actual value of pi: " + String.valueOf(actualPi));
+				System.out.printf("Using %s, we have approximated the number π to %d digits!\n", methodUsed,
+						numOfCorrectPiDigits - 1);
+				System.out.println("Press Enter to Continue.");
+				input.nextLine();
 			}
-			System.out.println();
-			System.out.println("Approximated value of pi: " + String.valueOf(piApproximation).trim());
-			System.out.println("      Actual value of pi: " + String.valueOf(actualPi));
-			System.out.printf("Using %s, we have approximated the number π to %d digits!\n", methodUsed,
-					numOfCorrectPiDigits - 1);
-			System.out.println("Press Enter to Continue.");
-			input.nextLine();
 		}
 	}
 }
