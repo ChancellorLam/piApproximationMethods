@@ -4,7 +4,7 @@ import java.lang.Math;
 
 public class PiApproximator {
 
-	void archimedesMethod() {
+	char[] archimedesMethod() {
 		// start with a hexagon
 		int numSideLengths = 6;
 
@@ -43,9 +43,19 @@ public class PiApproximator {
 					+ outerPolygonPerimeter);
 		}
 
+		char[] lowerPi = String.valueOf(innerPolygonPerimeter).toCharArray();
+		char[] upperPi = String.valueOf(outerPolygonPerimeter).toCharArray();
+		int i = 0;
+		char[] accuratePiDigits = new char[lowerPi.length];
+		while (lowerPi[i] == upperPi[i]) {
+			accuratePiDigits[i] = lowerPi[i];
+			i++;
+		}
+		return accuratePiDigits;
+
 	}
 
-	void madhavaLeibniz() {
+	char[] madhavaLeibniz() {
 		long counter = 0;
 		double currentValue = 0;
 		long denominator = 1;
@@ -72,10 +82,11 @@ public class PiApproximator {
 				denominator = denominator + 2;
 			}
 		}
+		return String.valueOf(currentValue).toCharArray();
 		
 	}
 	
-	void monteCarlo() {
+	char[] monteCarlo() {
 		Random random = new Random();
 		long pointsInsideCircle = 0;
 		InputTaker inputTaker = new InputTaker();
@@ -105,45 +116,24 @@ public class PiApproximator {
 		System.out.println(pointsInsideCircle + "/" + numOfPoints + " * 4 = "
 				+ pointsInsideCircle/(double)numOfPoints * 4);
 
+		return String.valueOf(pointsInsideCircle/(double)numOfPoints * 4).toCharArray();
 	}
 	
-	void newtonsMethod() {
-		double areaUnderCurve = 0;
-		MenuGenerator menu = new MenuGenerator();
+	char[] newtonsMethod() {
 		SubintervalQuery query = new SubintervalQuery();
 		IntegralTaker integral = new IntegralTaker();
-		String question = "How would you like to approximate the area under the curve?" +
-				" The most accurate for this scenario is [1] Simpson's rule:";
-		String[] options = {"Simpson's Rule", "Midpoint Rule", "Trapezoidal Rule"};
-		String methodUsed = "";
-
-		int approximationChoice = menu.selectionMenu(question, options);
-		if (approximationChoice == 0) {  // Simpson's Rule
-			int customSubinterval = query.askIfUserWantsToChooseSubintervals();
-			long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
-			areaUnderCurve = integral.simpsonsRule(numSubintervals);
-			methodUsed = options[0];
-		}
-		else if (approximationChoice == 1) {  // Midpoint Rule
-			int customSubinterval = query.askIfUserWantsToChooseSubintervals();
-			long numSubintervals = query.setSubintervals(customSubinterval);
-			areaUnderCurve = integral.midpointRule(numSubintervals);
-			methodUsed = options[1];
-		}
-		else if (approximationChoice == 2) {  // Trapezoidal Rule
-			int customSubinterval = query.askIfUserWantsToChooseSubintervals();
-			long numSubintervals = query.setSubintervals(customSubinterval);
-			areaUnderCurve = integral.trapezoidalRule(numSubintervals);
-			methodUsed = options[2];
-		}
+		int customSubinterval = query.askIfUserWantsToChooseSubintervals();
+		long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
+		double areaUnderCurve = integral.simpsonsRule(numSubintervals);
 
 		double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve;  // use area under curve in Newton's method
-		System.out.print("The area under the curve from 0 to 0.25 found through " + methodUsed + " can be used to ");
+		System.out.print("The area under the curve from 0 to 0.25 can be used to ");
 		System.out.println("approximate pi to the value of: " + piApproximation);
 
+		return String.valueOf(piApproximation).toCharArray();
 	}
 
-	void ramanujanSato() {
+	char[] ramanujanSato() {
 		InputTaker inputTaker = new InputTaker();
 		String question = "How many iterations would you like to perform? (16 max)";
 		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
@@ -155,12 +145,14 @@ public class PiApproximator {
 		for (int i = 0; i <= numOfIterations; i++ ) {
 			factorialPart = ExtraMath.factorial(4 * i) / Math.pow(ExtraMath.factorial(i), 4);
 			secondPart = (26390 * i + 1103) / Math.pow(396, 4 * i);
-			sum = sum + (secondPart * factorialPart);
-			System.out.println("Iteration " + i + ": " + 1 / (sum * constant));
+			sum = sum + (secondPart * factorialPart * constant);
+			System.out.println("Iteration " + i + ": " + (1 / sum));
 		}
+
+		return String.valueOf(1 / sum).toCharArray();
 	}
 
-	public void chudnovskyAlgorithm() {
+	public char[] chudnovskyAlgorithm() {
 		InputTaker inputTaker = new InputTaker();
 		String question = "How many iterations would you like to perform? (16 max)";
 		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
@@ -173,5 +165,7 @@ public class PiApproximator {
 			sum = sum + numerator/denominator * 12;
 			System.out.println("Iteration " + i + ": " + 1 / (sum));
 		}
+
+		return String.valueOf(1 / sum).toCharArray();
 	}
 }
