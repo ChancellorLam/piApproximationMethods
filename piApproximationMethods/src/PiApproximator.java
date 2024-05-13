@@ -133,18 +133,24 @@ public class PiApproximator {
 		);
 	}
 	
-	char[] newtonsMethod() {
+	PiApproxData newtonsMethod() {
 		SubintervalQuery query = new SubintervalQuery();
 		IntegralTaker integral = new IntegralTaker();
 		int customSubinterval = query.askIfUserWantsToChooseSubintervals();
 		long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
+
+		long startTime = System.nanoTime();
+
 		double areaUnderCurve = integral.simpsonsRule(numSubintervals);
 
 		double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve;  // use area under curve in Newton's method
 		System.out.print("The area under the curve from 0 to 0.25 can be used to ");
 		System.out.println("approximate pi to the value of: " + piApproximation);
 
-		return String.valueOf(piApproximation).toCharArray();
+		long endTime = System.nanoTime();
+		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
+
+		return new PiApproxData(String.valueOf(piApproximation).toCharArray(), timeElapsedInSec);
 	}
 
 	char[] ramanujanSato() {
