@@ -4,7 +4,8 @@ import java.lang.Math;
 
 public class PiApproximator {
 
-	char[] archimedesMethod() {
+	PiApproxData archimedesMethod() {
+		long startTime = System.nanoTime();
 		// start with a hexagon
 		int numSideLengths = 6;
 
@@ -51,7 +52,9 @@ public class PiApproximator {
 			accuratePiDigits[i] = lowerPi[i];
 			i++;
 		}
-		return accuratePiDigits;
+		long endTime = System.nanoTime();
+		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
+		return new PiApproxData(accuratePiDigits, timeElapsedInSec);
 
 	}
 
