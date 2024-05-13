@@ -1,6 +1,5 @@
 package piApproximationMethods;
 
-public class PiApproxData {
-    private char[] piDigits;
-    private long timeElapsed;
+public record PiApproxData(char[] piDigits, long timeElapsed) {
+
 }
