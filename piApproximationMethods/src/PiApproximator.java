@@ -58,7 +58,8 @@ public class PiApproximator {
 
 	}
 
-	char[] madhavaLeibniz() {
+	PiApproxData madhavaLeibniz() {
+		long startTime = System.nanoTime();
 		long counter = 0;
 		double currentValue = 0;
 		long denominator = 1;
@@ -85,7 +86,9 @@ public class PiApproximator {
 				denominator = denominator + 2;
 			}
 		}
-		return String.valueOf(currentValue).toCharArray();
+		long endTime = System.nanoTime();
+		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
+		return new PiApproxData(String.valueOf(currentValue).toCharArray(), timeElapsedInSec);
 		
 	}
 	
