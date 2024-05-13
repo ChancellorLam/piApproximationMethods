@@ -5,7 +5,9 @@ import java.lang.Math;
 public class PiApproximator {
 
 	PiApproxData archimedesMethod() {
+		// calculations start here, start timer
 		long startTime = System.nanoTime();
+
 		// start with a hexagon
 		int numSideLengths = 6;
 
@@ -52,8 +54,11 @@ public class PiApproximator {
 			accuratePiDigits[i] = lowerPi[i];
 			i++;
 		}
+
+		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
+
 		return new PiApproxData(accuratePiDigits, timeElapsedInSec);
 
 	}
@@ -65,9 +70,11 @@ public class PiApproximator {
 		double newValue;
 		InputTaker inputTaker = new InputTaker();
 		String question = "How many iterations would you like to perform?";
-
 		long numOfIterations = inputTaker.takeLongInputWithLowerBound(0, question);
+
+		// calculations start here, start timer
 		long startTime = System.nanoTime();
+
 		for (long i = 0; i < numOfIterations; i++) { // 4/1 - 4/3 + 4/5 - 4/7 + 4/9...± 4/n
 			if (counter % 2 == 0) {	// + terms
 				newValue = currentValue + 4.0 / denominator;
@@ -86,8 +93,11 @@ public class PiApproximator {
 				denominator = denominator + 2;
 			}
 		}
+
+		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
+
 		return new PiApproxData(String.valueOf(currentValue).toCharArray(), timeElapsedInSec);
 		
 	}
@@ -100,6 +110,7 @@ public class PiApproximator {
 		String question = "How many points would you like to plot?";
 		long numOfPoints = inputTaker.takeLongInputWithLowerBound(0, question);
 
+		// calculations start here, start timer
 		long startTime = System.nanoTime();
 
 		for (long i = 0; i < numOfPoints; i++) {
@@ -124,6 +135,7 @@ public class PiApproximator {
 		System.out.println(pointsInsideCircle + "/" + numOfPoints + " * 4 = "
 				+ pointsInsideCircle/(double)numOfPoints * 4);
 
+		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
 
@@ -139,14 +151,15 @@ public class PiApproximator {
 		int customSubinterval = query.askIfUserWantsToChooseSubintervals();
 		long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
 
+		// calculations start here, start timer
 		long startTime = System.nanoTime();
 
 		double areaUnderCurve = integral.simpsonsRule(numSubintervals);
-
 		double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve;  // use area under curve in Newton's method
 		System.out.print("The area under the curve from 0 to 0.25 can be used to ");
 		System.out.println("approximate pi to the value of: " + piApproximation);
 
+		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
 
@@ -158,6 +171,7 @@ public class PiApproximator {
 		String question = "How many iterations would you like to perform? (16 max)";
 		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
 
+		// calculations start here, start timer
 		long startTime = System.nanoTime();
 
 		double constant = 2 * Math.sqrt(2) / Math.pow(99, 2);
@@ -171,6 +185,7 @@ public class PiApproximator {
 			System.out.println("Iteration " + i + ": " + (1 / sum));
 		}
 
+		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
 
@@ -182,6 +197,7 @@ public class PiApproximator {
 		String question = "How many iterations would you like to perform? (16 max)";
 		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
 
+		// calculations start here, start timer
 		long startTime = System.nanoTime();
 
 		double sum = 0;
@@ -193,6 +209,7 @@ public class PiApproximator {
 			System.out.println("Iteration " + i + ": " + 1 / (sum));
 		}
 
+		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
 
