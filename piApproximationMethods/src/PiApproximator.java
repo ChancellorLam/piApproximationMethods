@@ -153,10 +153,12 @@ public class PiApproximator {
 		return new PiApproxData(String.valueOf(piApproximation).toCharArray(), timeElapsedInSec);
 	}
 
-	char[] ramanujanSato() {
+	PiApproxData ramanujanSato() {
 		InputTaker inputTaker = new InputTaker();
 		String question = "How many iterations would you like to perform? (16 max)";
 		long numOfIterations = inputTaker.takeIntInputWithLowerAndUpperBound(0, 16, question);
+
+		long startTime = System.nanoTime();
 
 		double constant = 2 * Math.sqrt(2) / Math.pow(99, 2);
 		double factorialPart;
@@ -169,7 +171,10 @@ public class PiApproximator {
 			System.out.println("Iteration " + i + ": " + (1 / sum));
 		}
 
-		return String.valueOf(1 / sum).toCharArray();
+		long endTime = System.nanoTime();
+		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
+
+		return new PiApproxData(String.valueOf(1 / sum).toCharArray(), timeElapsedInSec);
 	}
 
 	public char[] chudnovskyAlgorithm() {
