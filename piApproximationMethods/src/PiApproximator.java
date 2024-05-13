@@ -92,14 +92,16 @@ public class PiApproximator {
 		
 	}
 	
-	char[] monteCarlo() {
+	PiApproxData monteCarlo() {
 		Random random = new Random();
 		long pointsInsideCircle = 0;
 		InputTaker inputTaker = new InputTaker();
-		String question = "How many points would you like to plot?";
 
+		String question = "How many points would you like to plot?";
 		long numOfPoints = inputTaker.takeLongInputWithLowerBound(0, question);
-		
+
+		long startTime = System.nanoTime();
+
 		for (long i = 0; i < numOfPoints; i++) {
 			// Creates random x and y coordinates from 0 to 1 which creates a point in a square
 			double x = random.nextDouble();
@@ -122,7 +124,13 @@ public class PiApproximator {
 		System.out.println(pointsInsideCircle + "/" + numOfPoints + " * 4 = "
 				+ pointsInsideCircle/(double)numOfPoints * 4);
 
-		return String.valueOf(pointsInsideCircle/(double)numOfPoints * 4).toCharArray();
+		long endTime = System.nanoTime();
+		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
+
+		return new PiApproxData(
+				String.valueOf(pointsInsideCircle / (double)numOfPoints * 4).toCharArray(),
+				timeElapsedInSec
+		);
 	}
 	
 	char[] newtonsMethod() {
