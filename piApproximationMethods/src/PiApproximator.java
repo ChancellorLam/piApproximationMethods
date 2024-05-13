@@ -59,7 +59,6 @@ public class PiApproximator {
 	}
 
 	PiApproxData madhavaLeibniz() {
-		long startTime = System.nanoTime();
 		long counter = 0;
 		double currentValue = 0;
 		long denominator = 1;
@@ -68,6 +67,7 @@ public class PiApproximator {
 		String question = "How many iterations would you like to perform?";
 
 		long numOfIterations = inputTaker.takeLongInputWithLowerBound(0, question);
+		long startTime = System.nanoTime();
 		for (long i = 0; i < numOfIterations; i++) { // 4/1 - 4/3 + 4/5 - 4/7 + 4/9...± 4/n
 			if (counter % 2 == 0) {	// + terms
 				newValue = currentValue + 4.0 / denominator;
