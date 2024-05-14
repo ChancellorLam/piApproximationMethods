@@ -9,17 +9,6 @@ public class SubintervalQuery {
         return menu.selectionMenu(question, options);
     }
 
-    long setSubintervals(int usersChoice) {
-        InputTaker inputTaker = new InputTaker();
-
-        if (usersChoice == 0) {  // user chose yes, user how many subintervals they want
-            return inputTaker.takeLongInputWithLowerBound(1, "How many subintervals?");
-        }
-        else {  // user chose no, set default amount
-            return 6000;
-        }
-    }
-
     long setOnlyEvenSubintervals(int usersChoice) {
         long numSubintervals = 0;
         boolean numSubintervalsNotValid = true;
