@@ -19,37 +19,37 @@ public class ProgramManager {
 			PiApproximator piApproximator = new PiApproximator();
 			if (choice == 0) {
 				PiApproxData data = piApproximator.archimedesMethod();
-				piApproximation = data.piApproximation().clone();
+				piApproximation = data.piDigits().clone();
 				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 1) {
 				PiApproxData data = piApproximator.madhavaLeibniz();
-				piApproximation = data.piApproximation().clone();
+				piApproximation = data.piDigits().clone();
 				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 2) {
 				PiApproxData data = piApproximator.newtonsMethod();
-				piApproximation = data.piApproximation().clone();
+				piApproximation = data.piDigits().clone();
 				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 3) {
 				PiApproxData data = piApproximator.monteCarlo();
-				piApproximation = data.piApproximation().clone();
+				piApproximation = data.piDigits().clone();
 				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 4) {
 				PiApproxData data = piApproximator.ramanujanSato();
-				piApproximation = data.piApproximation().clone();
+				piApproximation = data.piDigits().clone();
 				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 5) {
 				PiApproxData data = piApproximator.chudnovskyAlgorithm();
-				piApproximation = data.piApproximation().clone();
+				piApproximation = data.piDigits().clone();
 				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = "the ".concat(options[choice]);
 			}

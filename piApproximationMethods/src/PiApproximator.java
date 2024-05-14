@@ -215,4 +215,5 @@ public class PiApproximator {
 
 		return new PiApproxData(String.valueOf(1 / sum).toCharArray(), timeElapsedInSec);
 	}
+	
 }
