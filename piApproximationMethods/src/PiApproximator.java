@@ -147,14 +147,13 @@ public class PiApproximator {
 	
 	PiApproxData newtonsMethod() {
 		SubintervalQuery query = new SubintervalQuery();
-		IntegralTaker integral = new IntegralTaker();
 		int customSubinterval = query.askIfUserWantsToChooseSubintervals();
 		long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
 
 		// calculations start here, start timer
 		long startTime = System.nanoTime();
 
-		double areaUnderCurve = integral.simpsonsRule(numSubintervals);
+		double areaUnderCurve = simpsonsRule(numSubintervals);
 		double piApproximation = 3 * Math.sqrt(3) / 4 + 24 * areaUnderCurve;  // use area under curve in Newton's method
 		System.out.print("The area under the curve from 0 to 0.25 can be used to ");
 		System.out.println("approximate pi to the value of: " + piApproximation);
@@ -215,5 +214,44 @@ public class PiApproximator {
 
 		return new PiApproxData(String.valueOf(1 / sum).toCharArray(), timeElapsedInSec);
 	}
-	
+
+	private double simpsonsRule(long numSubintervals) {  // numerically integrate using Simpson's Rule
+		long numEndpoints = numSubintervals + 1;
+		double sumOfTerms = 0;
+		double subintervalWidth = 0.25 / (double) numSubintervals;
+
+		/*  the 0th and last terms in the calculation of the integral using Simpson's rule are not modified
+			but for all other terms, odd terms are multiplied by 4 and even terms are multiplied by 2
+			so an example calculation would be: f(0) + 4f(1) + 2f(2) + 4f(3) + ... f(n)
+			then all of this would be multiplied by width of the subintervals / 3
+		*/
+
+		System.out.println("f(0): 0");  // this is the 0th term
+		for (long i = 1; i < numEndpoints - 1; i++) {  // modify and then add every term except for 0th and last
+			double x = subintervalWidth * i;
+			double y = Math.sqrt(x - x * x);
+			if (i % 2 == 1) { // odd terms
+				sumOfTerms = sumOfTerms + 4 * y;
+				System.out.println("+ 4f(" + x + "): " + 4 * y);
+			}
+			else { // even terms
+				sumOfTerms = sumOfTerms + 2 * y;
+				System.out.println("+ 2f(" + x + "): " + 2 * y);
+			}
+		}
+		sumOfTerms = sumOfTerms + Math.sqrt(0.25 - 0.25 * 0.25);  // add the last term
+		System.out.println("+ f(0.25): " + Math.sqrt(0.25 - 0.25 * 0.25));
+
+		System.out.println();
+		System.out.println("Sum of terms: " + sumOfTerms);
+		System.out.println("Number of subintervals: " + numSubintervals);
+		System.out.println("Width of subintervals: " + subintervalWidth);
+
+		// multiply sum of terms by width of subintervals / 3 to approximate integral with parabolas
+		double areaUnderCurve = sumOfTerms * subintervalWidth / 3;
+		System.out.print("Area under curve from 0 to 0.25: " + sumOfTerms + " * (" + subintervalWidth + " / 3) = ");
+		System.out.println(areaUnderCurve);
+
+		return areaUnderCurve;
+	}
 }
