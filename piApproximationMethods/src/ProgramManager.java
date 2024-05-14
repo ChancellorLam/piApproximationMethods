@@ -11,33 +11,47 @@ public class ProgramManager {
 		String methodUsed = "";
 		boolean continueRunning = true;
 		MenuGenerator mainMenu = new MenuGenerator();
-		char[] piApproximation = new char[16];
+		char[] piApproximation = new char[32];
+		double timeElapsedInSeconds = 0;
+
 		while (continueRunning) {
 			int choice = mainMenu.selectionMenu(prompt, options);
 			PiApproximator piApproximator = new PiApproximator();
 			if (choice == 0) {
-				piApproximation = piApproximator.archimedesMethod();
+				PiApproxData data = piApproximator.archimedesMethod();
+				piApproximation = data.piApproximation().clone();
+				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 1) {
-				piApproximation = piApproximator.madhavaLeibniz();
+				PiApproxData data = piApproximator.madhavaLeibniz();
+				piApproximation = data.piApproximation().clone();
+				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 2) {
-				piApproximation = piApproximator.newtonsMethod();
+				PiApproxData data = piApproximator.newtonsMethod();
+				piApproximation = data.piApproximation().clone();
+				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 3) {
-				piApproximation = piApproximator.monteCarlo();
+				PiApproxData data = piApproximator.monteCarlo();
+				piApproximation = data.piApproximation().clone();
+				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 4) {
-				piApproximation = piApproximator.ramanujanSato();
+				PiApproxData data = piApproximator.ramanujanSato();
+				piApproximation = data.piApproximation().clone();
+				timeElapsedInSeconds = data.timeElapsedInSec();
 				methodUsed = options[choice];
 			}
 			else if (choice == 5) {
-				piApproximation = piApproximator.chudnovskyAlgorithm();
-				methodUsed = options[choice];
+				PiApproxData data = piApproximator.chudnovskyAlgorithm();
+				piApproximation = data.piApproximation().clone();
+				timeElapsedInSeconds = data.timeElapsedInSec();
+				methodUsed = "the ".concat(options[choice]);
 			}
 			else if (choice == 6) { // Exit
 				continueRunning = false;
@@ -56,8 +70,9 @@ public class ProgramManager {
 				System.out.println();
 				System.out.println("Approximated value of pi: " + String.valueOf(piApproximation).trim());
 				System.out.println("      Actual value of pi: " + String.valueOf(actualPi));
-				System.out.printf("Using %s, we have approximated the number π to %d digits!\n", methodUsed,
-						numOfCorrectPiDigits - 1);
+				System.out.printf("Using %s, we have approximated the number π to %d digits in %f seconds.\n",
+						methodUsed, numOfCorrectPiDigits - 1, timeElapsedInSeconds);
+				System.out.printf("That is %f digits per second!\n", (numOfCorrectPiDigits - 1) / timeElapsedInSeconds);
 				System.out.println("Press Enter to Continue.");
 				input.nextLine();
 			}
