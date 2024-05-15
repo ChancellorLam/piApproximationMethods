@@ -146,9 +146,8 @@ public class PiApproximator {
 	}
 	
 	PiApproxData newtonsMethod() {
-		SubintervalQuery query = new SubintervalQuery();
-		int customSubinterval = query.askIfUserWantsToChooseSubintervals();
-		long numSubintervals = query.setOnlyEvenSubintervals(customSubinterval);
+		int customSubinterval = askIfUserWantsToChooseSubintervals();
+		long numSubintervals = setOnlyEvenSubintervals(customSubinterval);
 
 		// calculations start here, start timer
 		long startTime = System.nanoTime();
@@ -213,6 +212,37 @@ public class PiApproximator {
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
 
 		return new PiApproxData(String.valueOf(1 / sum).toCharArray(), timeElapsedInSec);
+	}
+
+	private int askIfUserWantsToChooseSubintervals() {
+		MenuGenerator menu = new MenuGenerator();
+		String question = "Would you like to choose how many subintervals?" +
+				" If not, a default amount (6000) will be chosen.";
+		String[] options = {"Yes:", "No:"};
+		return menu.selectionMenu(question, options);
+	}
+
+	private long setOnlyEvenSubintervals(int usersChoice) {
+		long numSubintervals = 0;
+		boolean numSubintervalsNotValid = true;
+		InputTaker inputTaker = new InputTaker();
+		if (usersChoice == 0) {  // user chose yes, user how many subintervals they want
+			while (numSubintervalsNotValid) {
+				long numSubintervalsAttempt = inputTaker.takeLongInput("How many subintervals?");
+				if (numSubintervalsAttempt % 2 != 0 || numSubintervalsAttempt <= 0) {
+					System.out.println("Invalid amount. You need to input an even integer that is at least 2.");
+					System.out.println();
+				}
+				else {
+					numSubintervals = numSubintervalsAttempt;
+					numSubintervalsNotValid = false;
+				}
+			}
+		}
+		else {  // user chose no, set default amount
+			return 6000;
+		}
+		return numSubintervals;
 	}
 
 	private double simpsonsRule(long numSubintervals) {  // numerically integrate using Simpson's Rule
