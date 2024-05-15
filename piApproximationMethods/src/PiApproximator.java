@@ -83,7 +83,7 @@ public class PiApproximator {
 				currentValue = newValue;
 				counter++;
 				denominator = denominator + 2;
-			} 
+			}
 			else if (counter % 2 == 1) { // - terms
 				newValue = currentValue - 4.0 / denominator;
 				System.out.println("Iteration " + (counter + 1)  + ": " + currentValue + " - " + "4/" + denominator +
@@ -99,9 +99,9 @@ public class PiApproximator {
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
 
 		return new PiApproxData(String.valueOf(currentValue).toCharArray(), timeElapsedInSec);
-		
+
 	}
-	
+
 	PiApproxData monteCarlo() {
 		Random random = new Random();
 		long pointsInsideCircle = 0;
@@ -117,17 +117,17 @@ public class PiApproximator {
 			// Creates random x and y coordinates from 0 to 1 which creates a point in a square
 			double x = random.nextDouble();
 			double y = random.nextDouble();
-			
+
 			// given x and y coordinates, Pythagorean theorem can be used to determine diagonal distance to the origin
 			double distance = Math.sqrt(x * x + y * y);
 			System.out.println("Point " + (i + 1) + ": (" + x + ", " + y + ")");
-			
+
 			// if the diagonal distance is <= 1 then it falls within a quarter-circle with a radius of 1
 			if (distance <= 1) {
 				pointsInsideCircle++;
 			}
 		}
-		
+
 		System.out.println("After plotting " + numOfPoints + " points in a square of side length 0.5, "
 				+ pointsInsideCircle + " points were inside of a quarter circle with a radius of 1.");
 		System.out.println("By dividing the ratio of points inside the circle by the total amount of points in the" +
@@ -144,7 +144,7 @@ public class PiApproximator {
 				timeElapsedInSec
 		);
 	}
-	
+
 	PiApproxData newtonsMethod() {
 		int customSubinterval = askIfUserWantsToChooseSubintervals();
 		long numSubintervals = setOnlyEvenSubintervals(customSubinterval);
