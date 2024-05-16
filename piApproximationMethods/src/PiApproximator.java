@@ -64,7 +64,6 @@ public class PiApproximator {
 	}
 
 	PiApproxData madhavaLeibniz() {
-		long counter = 0;
 		double currentValue = 0;
 		long denominator = 1;
 		double newValue;
@@ -76,23 +75,19 @@ public class PiApproximator {
 		long startTime = System.nanoTime();
 
 		for (long i = 0; i < numOfIterations; i++) { // 4/1 - 4/3 + 4/5 - 4/7 + 4/9...± 4/n
-			if (counter % 2 == 0) {	// + terms
+			if (i % 2 == 0) {	// + terms
 				newValue = currentValue + 4.0 / denominator;
-				System.out.println("Iteration " + (counter + 1) + ": " + currentValue + " + " + "4/" + denominator +
-						" = " +newValue);
-				currentValue = newValue;
-				counter++;
-				denominator = denominator + 2;
-			}
-			else if (counter % 2 == 1) { // - terms
-				newValue = currentValue - 4.0 / denominator;
-				System.out.println("Iteration " + (counter + 1)  + ": " + currentValue + " - " + "4/" + denominator +
+				System.out.println("Iteration " + (i + 1) + ": " + currentValue + " + " + "4/" + denominator +
 						" = " + newValue);
-				currentValue = newValue;
-				counter++;
-				denominator = denominator + 2;
-			}
-		}
+            }
+			else { // - terms
+				newValue = currentValue - 4.0 / denominator;
+				System.out.println("Iteration " + (i + 1)  + ": " + currentValue + " - " + "4/" + denominator +
+						" = " + newValue);
+            }
+            currentValue = newValue;
+            denominator = denominator + 2;
+        }
 
 		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
