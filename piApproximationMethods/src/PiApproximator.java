@@ -64,37 +64,24 @@ public class PiApproximator {
 	}
 
 	PiApproxData madhavaLeibniz() {
-		double currentValue = 0;
-		long denominator = 1;
-		double newValue;
 		InputTaker inputTaker = new InputTaker();
+
+		// get number of iterations
 		String question = "How many iterations would you like to perform?";
 		long numOfIterations = inputTaker.takeLongInputWithLowerBound(0, question);
 
 		// calculations start here, start timer
 		long startTime = System.nanoTime();
 
-		for (long i = 0; i < numOfIterations; i++) { // 4/1 - 4/3 + 4/5 - 4/7 + 4/9...± 4/n
-			if (i % 2 == 0) {	// + terms
-				newValue = currentValue + 4.0 / denominator;
-				System.out.println("Iteration " + (i + 1) + ": " + currentValue + " + " + "4/" + denominator +
-						" = " + newValue);
-            }
-			else { // - terms
-				newValue = currentValue - 4.0 / denominator;
-				System.out.println("Iteration " + (i + 1)  + ": " + currentValue + " - " + "4/" + denominator +
-						" = " + newValue);
-            }
-            currentValue = newValue;
-            denominator = denominator + 2;
-        }
+		// execute C code through JNI
+		CodeInC codeInC = new CodeInC();
+		double currentValue = codeInC.madhavaLeibniz(numOfIterations);
 
 		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();
 		double timeElapsedInSec = (double) (endTime - startTime) / 1000000000;
 
 		return new PiApproxData(String.valueOf(currentValue).toCharArray(), timeElapsedInSec);
-
 	}
 
 	PiApproxData monteCarlo() {
