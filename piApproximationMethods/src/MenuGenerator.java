@@ -27,4 +27,28 @@ public class MenuGenerator {
 		}
 		return validSelection;
 	}
+
+	public boolean askYesOrNo(String question) {
+		boolean selectionNotMade = true;
+		boolean boolValue = false;
+
+		while (selectionNotMade) {
+			InputTaker inputTaker = new InputTaker();
+
+			System.out.printf("%s \n[0] Yes \n[1] No\n", question);
+			int selection = inputTaker.takeMenuSelection();
+			if (selection == 0) {
+				boolValue = true;
+				selectionNotMade = false;
+			}
+			else if (selection == 1) {
+				selectionNotMade = false;
+            }
+			else {
+				System.out.println("Invalid input. You must make a choice between 0 and 1.");
+				System.out.println();
+			}
+		}
+		return boolValue;
+	}
 }

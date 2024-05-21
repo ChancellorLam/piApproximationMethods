@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jdouble JNICALL Java_piApproximationMethods_CodeInC_madhavaLeibniz
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     piApproximationMethods_CodeInC
+ * Method:    madhavaLeibnizPrintCalc
+ * Signature: (J)D
+ */
+JNIEXPORT jdouble JNICALL Java_piApproximationMethods_CodeInC_madhavaLeibnizPrintCalc
+  (JNIEnv *, jobject, jlong);
+
 #ifdef __cplusplus
 }
 #endif

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class InputTaker {
 	static Scanner input = new Scanner(System.in);
-	
+
 	int takeMenuSelection() {
 		boolean inputNotTaken = true;
 		int inputAttempt = 0;
@@ -25,7 +25,7 @@ public class InputTaker {
 		}
 		return inputAttempt;
 	}
-	
+
 	long takeLongInput(String question) {
 		boolean inputNotTaken = true;
 		long inputAttempt = 0;

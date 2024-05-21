@@ -65,17 +65,26 @@ public class PiApproximator {
 
 	PiApproxData madhavaLeibniz() {
 		InputTaker inputTaker = new InputTaker();
+		MenuGenerator menu = new MenuGenerator();
 
-		// get number of iterations
+		// get number of iterations and ask whether calculations should be printed
 		String question = "How many iterations would you like to perform?";
 		long numOfIterations = inputTaker.takeLongInputWithLowerBound(0, question);
+		question = "Would you like the calculations to be displayed? This will slow down calculation speed.";
+		boolean printCalc = menu.askYesOrNo(question);
 
 		// calculations start here, start timer
 		long startTime = System.nanoTime();
 
 		// execute C code through JNI
 		CodeInC codeInC = new CodeInC();
-		double currentValue = codeInC.madhavaLeibniz(numOfIterations);
+		double currentValue;
+		if (printCalc) {
+			currentValue = codeInC.madhavaLeibnizPrintCalc(numOfIterations);
+		}
+		else {
+			currentValue = codeInC.madhavaLeibniz(numOfIterations);
+		}
 
 		// calculations end here, end timer and calculate time elapsed
 		long endTime = System.nanoTime();

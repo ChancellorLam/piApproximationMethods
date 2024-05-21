@@ -10,4 +10,6 @@ public class CodeInC {
     }
 
     public native double madhavaLeibniz(long numOfIterations);
+
+    public native double madhavaLeibnizPrintCalc(long numOfIterations);
 }
